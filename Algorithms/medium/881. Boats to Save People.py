@@ -3,7 +3,7 @@ class Solution(object):
         """
         :type people: List[int]
         :type limit: int
-        :rtype: int
+        :rtype: intй
         """
         people = sorted(people)
         num_of_boats = 0
