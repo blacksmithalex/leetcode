@@ -14,28 +14,25 @@ class Solution(object):
                 return False
             directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
             for x, y in directions:
-                cur = board[i][j]
+                curletter = board[i][j]
                 board[i][j] = -1
                 if traversal(i + x, j + y, ind + 1):
                     return True
-                board[i][j] = cur
+                board[i][j] = curletter
+
         n, m = len(board), len(board[0])
-        boardDict = {}
-        wordDict = {}
+        boardDict, wordDict = {}, {}
         for i in range(n):
             for j in range(m):
-                cur = board[i][j]
-                boardDict[cur] = boardDict.get(cur, 0) + 1
-        for i in range(len(word)):
-            cur = word[i]
-            wordDict[cur] = wordDict.get(cur, 0) + 1
-        for cur in wordDict:
-            if cur not in boardDict or boardDict[cur] < wordDict[cur]:
+                curletter = board[i][j]
+                boardDict[curletter] = boardDict.get(curletter, 0) + 1
+        for letter in word:
+            wordDict[letter] = wordDict.get(letter, 0) + 1
+        for letter in wordDict:
+            if letter not in boardDict or boardDict[letter] < wordDict[letter]:
                 return False
         for i in range(n):
             for j in range(m):
-                res = traversal(i, j, 0)
-                if res:
-                    return res
+                if traversal(i, j, 0):
+                    return True
         return False
-
