@@ -1,18 +1,20 @@
-# Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution(object):
-    def deleteDuplicates(self, head):
+    def productExceptSelf(self, nums):
         """
-        :type head: Optional[ListNode]
-        :rtype: Optional[ListNode]
+        :type nums: List[int]
+        :rtype: List[int]
         """
-        curnode = head
-        while (curnode and curnode.next):
-            if (curnode.next.val == curnode.val):
-                curnode.next = curnode.next.next
-                continue
-            curnode = curnode.next
-        return head
+        nums = [1] + nums + [1]
+        n = len(nums)
+        suff = [1] * n
+        pref = [1] * n
+        for i in range(1, n):
+            pref[i] = pref[i - 1] * nums[i]
+        for i in range(n - 2, -1, -1):
+            suff[i] = suff[i + 1] * nums[i]
+        res = [0] * n
+        for i in range(1, n - 1):
+            res[i] = pref[i - 1] * suff[i + 1]
+        return res[1:-1]
+        
+        
