@@ -6,8 +6,7 @@ class Solution(object):
         :rtype: int
         """
         W = [[] for _ in range(n)]
-        for i in range(len(edges)):
-            u, v = edges[i][0], edges[i][1]
+        for u, v in edges:
             W[u].append(v)
             W[v].append(u)
 
@@ -26,7 +25,8 @@ class Solution(object):
                 cur_vert = []
                 dfs(i)
                 parts.append(len(cur_vert))
-        s = 0
+        
+        res = 0
         for i in range(len(parts)):
-            s += (parts[i] * (n - parts[i]))
-        return s // 2
+            res += (parts[i]) * (n - parts[i])
+        return res // 2
