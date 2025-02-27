@@ -1,21 +1,16 @@
 class Solution(object):
     def longestCommonPrefix(self, strs):
-        def common_pref(a1, a2):
-            if len(a1) > len(a2):
-                a1 = a1[:len(a2)]
-            else:
-                a2 = a2[:len(a1)]
-            n = min(len(a1), len(a2))
-            cp = ''
-            for i in range(n):
-                if a1[i] == a2[i]:
-                    cp += a1[i]
-                else:
-                    break
-            return cp
-
-        pref = strs[0]
-        for word in strs[1:]:
-            pref = common_pref(pref, word)
-        return pref
-
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        def PairPrefix(word1, word2):
+            min_len = min(len(word1), len(word2))
+            i = 0
+            while i < min_len and word1[i] == word2[i]:
+                i += 1
+            return word1[:i]
+        res = strs[0]
+        for word2 in strs[1:]:
+            res = PairPrefix(res, word2)
+        return res
