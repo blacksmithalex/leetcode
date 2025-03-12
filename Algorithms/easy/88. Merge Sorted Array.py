@@ -9,17 +9,19 @@ class Solution(object):
         """
         nums1copy = nums1[:m]
         i, j = 0, 0
-        while not (i == m and j == n):
-            if i != m and j != n:
-                if nums1copy[i] < nums2[j]:
-                    nums1[i + j] = nums1copy[i]
-                    i += 1
-                else:
-                    nums1[i + j] = nums2[j]
-                    j += 1
-            elif i != m and j == n:
+        while i < m and j < n:
+            if nums1copy[i] < nums2[j]:
                 nums1[i + j] = nums1copy[i]
                 i += 1
-            elif i == m and j != n:
+            else:
                 nums1[i + j] = nums2[j]
                 j += 1
+        if i == m:
+            while j < n:
+                nums1[i + j] = nums2[j]
+                j += 1
+        if j == n:
+            while i < m:
+                nums1[i + j] = nums1copy[i]
+                i += 1
+        
