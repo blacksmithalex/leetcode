@@ -8,10 +8,8 @@ class Solution(object):
         """
         count = 0
         rule = {'type': 0, 'color': 1, 'name': 2}
-        for it in items:
-            if it[rule[ruleKey]] == ruleValue:
+        for item in items:
+            if item[rule[ruleKey]] == ruleValue:
                 count += 1
         return count
-
-
-
+        
